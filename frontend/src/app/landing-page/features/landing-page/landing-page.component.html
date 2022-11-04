@@ -1,0 +1,5 @@
+<div class="landing-page" *ngIf="index$ | async as index">
+    <app-hero (scroll)="next()"></app-hero>
+    <app-description [class.inactive]="index < 2"></app-description>
+    <app-articles [class.inactive]="index < 3"></app-articles>
+</div>

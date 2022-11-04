@@ -1,0 +1,25 @@
+.landing-page {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: grid;
+    position: relative;
+    & > * {
+        position: absolute;
+        transition: .3s cubic-bezier(0, 0, .1, 1);
+    }
+}
+
+app-hero {
+    z-index: 1;
+}
+app-description {
+    z-index: 2;
+}
+app-articles {
+    z-index: 3;
+}
+
+.inactive {
+    transform: translateY(100vh);
+}

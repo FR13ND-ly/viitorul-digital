@@ -1,0 +1,26 @@
+<div class="return" routerLink='/'>
+    <mat-icon>arrow_back_ios</mat-icon>
+    <p class="return__text">Pagina Principală</p>
+</div>
+<div class="pattern"></div>
+<form (submit)="onSaveArticle(article)" #articleForm="ngForm" class="editor" *ngIf="article$ | async as article">
+    <mat-form-field class="editor__title" appearance="outline">
+        <mat-label>Titlu</mat-label>
+        <input name="title" matInput [(ngModel)]="article.title" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <div class="editor__inputs-wrapper">
+        <mat-form-field class="editor__subtitle" appearance="outline">
+            <mat-label>Subtitlu</mat-label>
+            <input name="subtitle" matInput [(ngModel)]="article.subtitle" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+        <mat-form-field class="editor__image" appearance="outline">
+            <mat-label>Url Imagine</mat-label>
+            <input name="imageUrl" matInput [(ngModel)]="article.imageUrl" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+    </div>
+    <mat-form-field class="editor__text" appearance="outline">
+        <mat-label>Text</mat-label>
+        <textarea name="text" matInput [(ngModel)]="article.text" [ngModelOptions]="{standalone: true}"></textarea>
+    </mat-form-field>
+    <button class="editor__save-btn" color="primary" mat-stroked-button>Salvează</button>
+</form>

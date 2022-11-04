@@ -1,0 +1,10 @@
+<div class="pattern"></div>
+<div class="articles-wrapper" *ngIf="articles$ | async as articles">
+    <div class="article mat-elevation-z10" *ngFor="let article of articles" routerLink="/articol/{{article.id}}">
+        <img class="article__image" [src]="article.imageUrl">
+        <div class="article__content-wrapper">
+            <p class="article__title">{{ article.title }}</p>
+            <p class="article__text">{{ article.text | previewText: 15 }}</p>
+        </div>
+    </div>
+</div>

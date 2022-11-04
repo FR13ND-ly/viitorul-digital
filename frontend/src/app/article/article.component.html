@@ -1,0 +1,49 @@
+<ng-container *ngIf="url$ | async as url">
+    <div class="pattern"></div>
+    <div class="return" routerLink='/'>
+        <mat-icon>arrow_back_ios</mat-icon>
+        <p class="return__text">Înapoi</p>
+    </div>
+    <div class="user mat-elevation-z2" *ngIf="{ user : user$ | async } as vs">
+        <img [src]="vs.user.photoURL" *ngIf="vs.user" class="user__photo">
+        <mat-icon (click)="onLogout()" *ngIf="vs.user">logout</mat-icon>
+        <img (click)="onLogin()" *ngIf="!vs.user" src="https://play-lh.googleusercontent.com/aFWiT2lTa9CYBpyPjfgfNHd0r5puwKRGj2rHpdPTNrz2N9LXgN_MbLjePd1OTc0E8Rl1" class="user__auth">
+    </div>
+    <article class="article" *ngIf="article$ | async as article">
+        <h1 class="article__title">{{ article.title }}</h1>
+        <h2 class="article__subtitle">{{ article.subtitle }}</h2>
+        <img class="article__image" [src]="article.imageUrl">
+        <div class="article__text" [innerHTML]="article.text"></div>
+        <div class="article__actions" *ngIf="user$ | async as user">
+            <div class="article__likes btn mat-elevation-z2" (click)="onLike(likes, url, user)" *ngIf="likes$ | async as likes">
+                <mat-icon>favorite{{ likes.liked ? '' : '_outline'}}</mat-icon>
+                <span class="article__likes-count">{{ likes.count }}</span>
+            </div>
+            <div class="article__edit btn mat-elevation-z2" *ngIf="user.isStaff" routerLink="/edit/{{url}}">
+                <mat-icon color="accent">edit</mat-icon>
+            </div>
+            <div class="article__share btn mat-elevation-z2" (click)="onShare()">
+                <mat-icon>share</mat-icon>
+            </div>
+        </div>
+    </article>
+    <section class="comments-section" *ngIf="{ comments : comments$ | async , user : user$ | async} as vs">
+        <h2>{{ vs.comments?.length }} comments</h2>
+        <form (submit)="onSendComment(commentForm, vs.comments, vs.user, url)" #commentForm="ngForm" *ngIf="vs.user">
+            <mat-form-field class="comment-input" appearance="standard">
+                <input ngModel name="text" matInput placeholder="Scrie un comentariu">
+            </mat-form-field>
+            <button mat-icon-button class="comment-send-btn"><mat-icon>send</mat-icon></button>
+        </form>
+        <div class="comments">
+            <div class="comment" *ngFor="let comment of vs.comments">
+                <img class="comment__image" [src]="comment.imageUrl">
+                <div class="comment__details">
+                    <h6 class="comment__date">{{ comment.date }}</h6>
+                    <span class="comment__author">{{ comment.author }}</span>
+                    <p class="comment__text">{{ comment.text }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

@@ -1,0 +1,130 @@
+:host {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    position: relative;
+}
+
+.pattern {
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    background-color: #e5e5f7;
+    opacity: 0.3;
+    z-index: -1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #e5e5f7 50px ), repeating-linear-gradient( #ccc, #4a148c );
+}
+
+.bg-text {
+    position: absolute;
+    font-size: 15rem;
+    left: -1rem;
+    font-family: 'Bebas Neue', cursive;
+    color: hsla(267, 75%, 31%, 0.2);
+    line-height: normal;
+    user-select: none;
+}
+
+.big-image {
+  position: absolute;
+  right: 7vw;
+  top: 5vh;
+  height: 500px;
+  width: 500px;
+}
+.small-image {
+  position: absolute;
+  right: 30vw;
+  bottom: 13vh;
+  width: 220px;
+  height: 220px;
+}
+
+.circle {
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title {
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    left: 2rem;
+    top: 3.8rem;
+    z-index: 9999999;
+    font-size: 4rem;
+    line-height: 1.2;
+    color: #111;
+    user-select: none;
+}
+
+.title {
+    animation: background-pan 5s linear infinite;
+  background: linear-gradient(
+    to right,
+    purple,
+    violet,
+    pink,
+    purple
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.band {
+  position: absolute;
+  height: 55vh;
+  width: 140vw;
+  top: 35vh;
+  right: -10rem;
+  opacity: .6;
+  background-image: linear-gradient(to right, #4a148c, #e4d1fc);
+  z-index: -1;
+  rotate: -10deg;
+}
+
+.video {
+  position: absolute;
+  bottom: 13vh;
+  left: 5vw;
+  border-radius: 6px;
+  &::after {
+    content: '';
+    position: absolute;
+    background-color:  red;
+    width: 500px;
+    height: 700px;
+  }
+}
+
+.video-wrapper {
+  width: fit-content;
+  height: fit-content;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 550px;
+    height: 305px;
+    border-radius: 6px;
+    bottom: calc(13vh - 1rem);
+    left: calc(5vw + 1.5rem);
+    z-index: -1;
+    outline: 10px dashed #4a148c;
+  }
+}
+
+@keyframes background-pan {
+    from {
+      background-position: 0% center;
+    }
+    
+    to {
+      background-position: -200% center;
+    }
+}
